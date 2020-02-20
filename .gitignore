@@ -1,0 +1,13 @@
+#ignore generated binary files and auto-generated ANTLR code
+bin
+
+#ignore Java class files
+*.class
+build/**
+
+#ignore other junk files
+*~
+*.temp
+.gradle/**
+.idea/
+
