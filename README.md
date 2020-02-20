@@ -86,13 +86,25 @@ or `RefAnswer` you can take a look at the source.
 
 ## Disclaimer
 
-This was written solely to enable JVM users to use the reference compiler programmatically
-without having to use ruby or bash, and not having to start a new REST client for each request.
-I do not take responsibility for any problems you may run into using this tool.
+### Fat caveat
+If you use this with JUnit to automatically check your programs (which is why I wrote this for)
+it will CONSIDERABLY slow down your testing (you are making potentially two POST requests per .wacc file!).
+
+I very much recommend caching your queries.
+
+Also, if the network is down, the server crashes, etc, this will stop working.
+In particular, if we make enough queries to overload the server (like right before the deadline?)
+it will stop working for everyone, and we will be all screwed together :).
 
 If the POST API for the reference compiler changes (which has happened in the year 2019-2020 already) 
 this will stop working. If you want it fixed, please submit a pull request rather than asking me
 to fix it. Likewise if you find any bugs!
+
+### Quality
+
+This was written solely to enable JVM users to use the reference compiler programmatically
+without having to use ruby or bash, and not having to start a new REST client for each request.
+I do not take responsibility for any problems you may run into using this tool.
 
 I fully acknowledge that the naming is not super consistent, or the code super clean.
 This is because I basically copy pasted this thing out of my own WACC project, which is structured very differently.
