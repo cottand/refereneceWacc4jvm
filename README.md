@@ -94,9 +94,9 @@ If the POST API for the reference compiler changes (which has happened in the ye
 this will stop working. If you want it fixed, please submit a pull request rather than asking me
 to fix it. Likewise if you find any bugs!
 
-I fully acknowledge that the naming is not super consistent. 
-This is because I basically copy pasted this thing out of my own WACC project.
-Again, feel free to submit a PR.
+I fully acknowledge that the naming is not super consistent, or the code super clean.
+This is because I basically copy pasted this thing out of my own WACC project, which is structured very differently
+Again, feel free to submit a PR or fork the project.
 
 ## TODO
 If iI have the time, I'll try to make this a proper library on MavenCentral or JCenter.
