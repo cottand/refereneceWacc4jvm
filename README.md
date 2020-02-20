@@ -95,4 +95,4 @@ this will stop working. If you want it fixed, please submit a pull request rathe
 to fix it. Likewise if you find any bugs!
 
 ## TODO
-If iI have the time, I'll change the API to return an Optional instead of 
+If iI have the time, I'll try to make this a proper library on MavenCentral or JCenter.
