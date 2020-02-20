@@ -29,5 +29,54 @@ then modify your `build.gradle`, `build.gradle.kts` , or `pom.xml` as follows:
     <scope>system</scope>
     <systemPath>${basedir}/libs/referenceWacc4jvm-1.0-all.jar</systemPath>
 </dependency>
+```
 
+## Usage
+This was written with Kotlin, but you should be able to use it with Java and Scala too.
+```
+  /**
+   * Compiles and runs [prog]  passing it [stdin].
+   *
+   * IMPORTANT: assumes the program is well formed, ie, there can be no compile errors. This tool should be used to
+   * see the reference compiler's assembly code and to check their output, not to check semantic/syntactic checking.
+   *
+   * Returns null if the query failed, or  RefAnswer otherwise.
+   */
+  fun compile(prog: File, stdin: String): RefAnswer?
+
+  /**
+   * Emulates the assembly file [armProg] with standard input [stdin]
+   *
+   * Returns null if the query failed, or the serialised JSON of the reference compiler otherwise.
+   */
+  fun emulate(armProg: File, stdin: String): EmulatorReply?
+```
+
+### Small Java Examples
+#### Compiler
+```$xslt
+        File myWaccProg = new File("./wacc_examples/path/to/my/file.wacc");
+        String stdin = "Some test input for my program to handle";
+        RefAnswer answer = ReferenceWACC.compile(myWaccProg, stdin);
+        if (answer == null) {
+            System.out.println("Query failed!");
+        } else {
+            int exitCode = answer.getCode();
+            String compiledAssembly = answer.getAssembly();
+            /* ... */
+        }
+```
+#### Emulator
+```
+        File myAssemblyProg = new File("./path/to/my/assembly.s");
+        String stdin = "Some test input for my program to handle";
+        EmulatorReply reply = ReferenceWACC.emulate(myAssemblyProg, stdin);
+        if (reply == null) {
+            System.out.println("Query failed!");
+        } else {
+            String runtimeExitCode = reply.getEmulator_exit();
+            String assemblerOut = reply.getAssemble_out();
+            String emulatorOutput = reply.getEmulator_out();
+            /* ... */
+        }
 ```

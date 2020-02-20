@@ -21,6 +21,7 @@ object ReferenceWACC {
    * IMPORTANT: assumes the program is well formed, ie, there can be no compile errors. This tool should be used to
    * see the reference compiler's assembly code and to check their output, not to check semantic/syntactic checking.
    */
+  @JvmStatic
   fun compile(prog: File, stdin: String): RefAnswer? {
     val emulatorUrl = "https://teaching.doc.ic.ac.uk/wacc_compiler/run.cgi"
     val out =
@@ -49,6 +50,7 @@ object ReferenceWACC {
    *
    * Returns null if the query failed, or the serialised JSON of the reference compiler otherwise.
    */
+  @JvmStatic
   fun emulate(armProg: File, stdin: String): EmulatorReply? {
     val emulatorUrl = "https://teaching.doc.ic.ac.uk/wacc_compiler/emulate.cgi"
     return queryReference(armProg, emulatorUrl, stdin = stdin)
