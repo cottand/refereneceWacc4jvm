@@ -95,7 +95,7 @@ this will stop working. If you want it fixed, please submit a pull request rathe
 to fix it. Likewise if you find any bugs!
 
 I fully acknowledge that the naming is not super consistent, or the code super clean.
-This is because I basically copy pasted this thing out of my own WACC project, which is structured very differently
+This is because I basically copy pasted this thing out of my own WACC project, which is structured very differently.
 Again, feel free to submit a PR or fork the project.
 
 ## TODO
