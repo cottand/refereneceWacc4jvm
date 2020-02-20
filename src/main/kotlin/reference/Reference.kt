@@ -8,6 +8,7 @@ import com.github.kittinunf.fuel.core.InlineDataPart
 import com.github.kittinunf.fuel.gson.responseObject
 import com.google.gson.Gson
 import java.io.File
+import java.util.Optional
 
 object ReferenceWACC {
 
@@ -22,7 +23,7 @@ object ReferenceWACC {
    * see the reference compiler's assembly code and to check their output, not to check semantic/syntactic checking.
    */
   @JvmStatic
-  fun compile(prog: File, stdin: String): RefAnswer? {
+  fun compile(prog: File, stdin: String): Optional<RefAnswer> {
     val emulatorUrl = "https://teaching.doc.ic.ac.uk/wacc_compiler/run.cgi"
     val out =
       queryReference<CompilerReply>(prog, emulatorUrl, stdin, "-x", "-a")?.compiler_out?.lines()
@@ -42,18 +43,18 @@ object ReferenceWACC {
       ?.map { if (delimiters in it) it.replace(delimiters, "") else it }
       ?.joinLines()
     val code = out?.last { "The exit code is" in it }?.filter { str -> str.isDigit() }?.toInt()
-    return if (out == null) null else RefAnswer(assembly!!, runtimeOut!!, code!!)
+    return if (out == null) Optional.empty() else Optional.of(RefAnswer(assembly!!, runtimeOut!!, code!!))
   }
 
   /**
    * Emulates the assembly file [armProg] with standard input [stdin]
    *
-   * Returns null if the query failed, or the serialised JSON of the reference compiler otherwise.
+   * Returns empty if the query failed, or the serialised JSON of the reference compiler otherwise.
    */
   @JvmStatic
-  fun emulate(armProg: File, stdin: String): EmulatorReply? {
+  fun emulate(armProg: File, stdin: String): Optional<EmulatorReply> {
     val emulatorUrl = "https://teaching.doc.ic.ac.uk/wacc_compiler/emulate.cgi"
-    return queryReference(armProg, emulatorUrl, stdin = stdin)
+    return Optional.ofNullable(queryReference(armProg, emulatorUrl, stdin = stdin))
   }
 
   private inline fun <reified T : Any> queryReference(f: File, url: String, stdin: String = "", vararg ops: String) =
