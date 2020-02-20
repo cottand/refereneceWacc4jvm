@@ -54,7 +54,17 @@ object ReferenceWACC {
   @JvmStatic
   fun emulate(armProg: File, stdin: String): Optional<EmulatorReply> {
     val emulatorUrl = "https://teaching.doc.ic.ac.uk/wacc_compiler/emulate.cgi"
-    return Optional.ofNullable(queryReference(armProg, emulatorUrl, stdin = stdin))
+    val answer = Optional.ofNullable(queryReference<EmulatorReply>(armProg, emulatorUrl, stdin = stdin))
+    answer.ifPresent { reply ->
+      if (reply.assemble_out.isNotBlank()) {
+        val asmWithLines  = armProg.readText().lines().mapIndexed { i, s ->
+          val lNo = (i + 1).toString()
+          lNo + "      ".drop(lNo.length) + s
+        }.joinLines()
+        throw IllegalStateException("Failed to assemble program with error:\n${reply.assemble_out}\n$asmWithLines")
+      }
+    }
+    return answer
   }
 
   private inline fun <reified T : Any> queryReference(f: File, url: String, stdin: String = "", vararg ops: String) =
