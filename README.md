@@ -12,10 +12,13 @@ You should be able to download it from
  config. Start by putting the jar inside a `/libs` folder at the root of your project,
 then modify your `build.gradle`, `build.gradle.kts` , or `pom.xml` as follows:
  #### Gradle
+ In the `dependencies {}` block:
  ```
- implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+ implementation fileTree(dir: 'libs', include: ['*.jar'])
+
 ```
  #### Gradle Kotlin DSL
+ In the `dependencies {}` block:
  ```
  implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 ```
