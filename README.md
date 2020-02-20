@@ -111,4 +111,7 @@ This is because I basically copy pasted this thing out of my own WACC project, w
 Again, feel free to submit a PR or fork the project.
 
 ## TODO
-If iI have the time, I'll try to make this a proper library on MavenCentral or JCenter.
+If I have the time, I'll try to make this a proper library on MavenCentral or JCenter. It would be
+great to automatically cache queries in the local filesystem too.
+
+All are welcome to contribute through PRs or forks.
