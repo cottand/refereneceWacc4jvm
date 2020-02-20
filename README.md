@@ -91,8 +91,12 @@ without having to use ruby or bash, and not having to start a new REST client fo
 I do not take responsibility for any problems you may run into using this tool.
 
 If the POST API for the reference compiler changes (which has happened in the year 2019-2020 already) 
-this will stop working. If you want it fixed, please submit a pull request rather than asking me directly
+this will stop working. If you want it fixed, please submit a pull request rather than asking me
 to fix it. Likewise if you find any bugs!
+
+I fully acknowledge that the naming is not super consistent. 
+This is because I basically copy pasted this thing out of my own WACC project.
+Again, feel free to submit a PR.
 
 ## TODO
 If iI have the time, I'll try to make this a proper library on MavenCentral or JCenter.
