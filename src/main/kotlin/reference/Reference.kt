@@ -35,7 +35,7 @@ object ReferenceWACC {
       ?.drop(1)
       ?.takeWhile { delimiters !in it }
       ?.map { str -> str.dropWhile { chr -> chr.isDigit() }.trim() }
-      ?.filter { it.isNotBlank() }?.toList()?.joinLines()
+      ?.toList()?.joinLines()
     val runtimeOut = out
       ?.dropWhile { "-- Executing..." !in it }
       ?.drop(2)
